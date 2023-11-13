@@ -1,9 +1,9 @@
 package fr.epsi.b32324c2.jdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import fr.epsi.b32324c2.jdbc.dal.FournisseurDao;
+import fr.epsi.b32324c2.jdbc.dal.jdbc.FournisseurDaoJdbc;
+import fr.epsi.b32324c2.jdbc.entites.Fournisseur;
+
 import java.util.ResourceBundle;
 
 public class TestInsertion {
@@ -20,22 +20,13 @@ public class TestInsertion {
 
     public static void main(String[] args) {
 
-        try (Connection cnx = DriverManager.getConnection(BDD_URL, USER, PASSWORD)) {
-            System.out.println(cnx);
-            Statement statement = cnx.createStatement();
-
-            //ResultSet resultSet = statement.executeQuery("INSERT INTO FOURNISSEUR ( NOM) VALUES ( ' La Maison de la Peinture')");
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM FOURNISSEUR");
-            while (resultSet.next()) {
-                System.out.println(resultSet.getInt("ID"));
-                System.out.println(resultSet.getString("NOM"));
-            }
-
-
+        FournisseurDao fournisseurDao = new FournisseurDaoJdbc();
+        try {
+            fournisseurDao.insert(new Fournisseur("EPSI"));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
 
+        }
     }
+
 
 }

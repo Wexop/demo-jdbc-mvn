@@ -1,9 +1,8 @@
 package fr.epsi.b32324c2.jdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import fr.epsi.b32324c2.jdbc.dal.FournisseurDao;
+import fr.epsi.b32324c2.jdbc.dal.jdbc.FournisseurDaoJdbc;
+
 import java.util.ResourceBundle;
 
 public class TestUpdate {
@@ -20,21 +19,11 @@ public class TestUpdate {
 
     public static void main(String[] args) {
 
-        try (Connection cnx = DriverManager.getConnection(BDD_URL, USER, PASSWORD)) {
-            System.out.println(cnx);
-            Statement statement = cnx.createStatement();
-
-            //ResultSet resultSet = statement.executeQuery("UPDATE FOURNISSEUR SET NOM = 'La Maison des peintures' where ID = 4");
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM FOURNISSEUR");
-            while (resultSet.next()) {
-                System.out.println(resultSet.getInt("ID"));
-                System.out.println(resultSet.getString("NOM"));
-            }
-
-
+        FournisseurDao fournisseurDao = new FournisseurDaoJdbc();
+        try {
+            fournisseurDao.update("EPSI", "EPSI WIS");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
 
+        }
     }
 }
