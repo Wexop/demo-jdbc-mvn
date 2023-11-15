@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 public class Main {
 
+
     public final static String BDD_URL;
     public final static String USER;
     public final static String PASSWORD;
