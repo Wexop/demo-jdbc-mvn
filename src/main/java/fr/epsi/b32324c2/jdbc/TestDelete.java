@@ -4,6 +4,7 @@ import fr.epsi.b32324c2.jdbc.dal.FournisseurDao;
 import fr.epsi.b32324c2.jdbc.dal.jdbc.FournisseurDaoJdbc;
 import fr.epsi.b32324c2.jdbc.entites.Fournisseur;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TestDelete {
@@ -22,8 +23,9 @@ public class TestDelete {
 
         FournisseurDao fournisseurDao = new FournisseurDaoJdbc();
         try {
-            Fournisseur f = fournisseurDao.extraire().get(0);
-            fournisseurDao.delete(f);
+            List<Fournisseur> f = fournisseurDao.extraire();
+            Fournisseur fournisseur = f.get(f.size() - 1);
+            fournisseurDao.delete(fournisseur);
         } catch (Exception e) {
 
         }
