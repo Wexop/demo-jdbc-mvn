@@ -1,4 +1,4 @@
-package fr.epsi.b32324c2.jdbc;
+package fr.epsi.b32324c2.test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
-public class TestInsertion {
+public class TestDelete {
     public final static String BDD_URL;
     public final static String USER;
     public final static String PASSWORD;
@@ -24,7 +24,7 @@ public class TestInsertion {
             System.out.println(cnx);
             Statement statement = cnx.createStatement();
 
-            //ResultSet resultSet = statement.executeQuery("INSERT INTO FOURNISSEUR ( NOM) VALUES ( ' La Maison de la Peinture')");
+            //ResultSet resultSet = statement.executeQuery("DELETE FROM FOURNISSEUR WHERE ID = 4");
             ResultSet resultSet = statement.executeQuery("SELECT * FROM FOURNISSEUR");
             while (resultSet.next()) {
                 System.out.println(resultSet.getInt("ID"));
@@ -35,7 +35,5 @@ public class TestInsertion {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
-
 }
